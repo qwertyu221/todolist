@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,22 +24,15 @@ public class Task {
 
     @Column(name = "task")
     private String task;
-
     @Column(name = "importance")
     private Integer importance;
-
     @Column(name = "day_of_week")
     private Date dayOfWeek;
-
     @Column(name = "time")
     private Time time;
 
-    public Task(String task, Integer importance, Date dayOfWeek, Time time) {
-        this.task = task;
-        this.importance = importance;
-        this.dayOfWeek = dayOfWeek;
-        this.time = time;
-    }
+
+
 
     //    public enum Importance{
 //        IMPORTANT, VERY_IMPORTANT, NOT_IMPORTANT

@@ -18,7 +18,9 @@ public class TaskServiceImpl implements TaskService{
     @Override
     @Transactional
     public void addTask(Task task) {
-        Task newTask = new Task(task.getTask(),task.getImportance(),task.getDayOfWeek(),task.getTime());
+
+
+        Task newTask = new Task();
         taskRepositories.save(newTask);
     }
 

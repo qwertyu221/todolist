@@ -1,5 +1,6 @@
 package com.e4132.todo.list.controller;
 
+import com.e4132.todo.list.forms.TaskForm;
 import com.e4132.todo.list.model.Task;
 import com.e4132.todo.list.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +27,23 @@ public class MainController {
     public String getToDoList(Model model){
         List<Task> tasks = taskService.getAllTasks();
         model.addAttribute("allTasks", tasks);
-        return "taskPage";
+        return "allTasks";
     }
 
     @GetMapping("todo/addTask")
     public String addTask(Model model){
         Task task = new Task();
         model.addAttribute("task",task);
-        return "addTaskPage";
+        return "addTask";
     }
 
     @PostMapping("/todo/saveTask")
-    public String addTaskToList(@ModelAttribute(value = "task") Task task){
+    public String addTaskToList(TaskForm form){
+        Task task = new Task();
+        task.setTask(form.getTask());
+        task.setImportance(form.getImportance());
+        task.setDayOfWeek(form.getDayOfWeek());
+        task.setTime(form.getTime());
         taskService.addTask(task);
         return "redirect:/todo";
     }

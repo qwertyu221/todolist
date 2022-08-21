@@ -7,6 +7,8 @@
 <body>
 
 <form method="post" action="/todo/saveTask">
+
+
     <label>
         <input name="task" placeholder="Задача">
     </label>
@@ -14,11 +16,12 @@
         <input name="importance" type="number" max="3" min="0" placeholder="Приоритет">
     </label>
     <label>
-        <input name="dayOfWeek" type="week" placeholder="День">
+        <input name="dayOfWeek" type="date" placeholder="День">
     </label>
     <label>
         <input name="time" type="time" placeholder="Время">
     </label>
+
     <input type="submit" value="Добавить">
 
 </form>

@@ -9,8 +9,9 @@ import java.sql.Time;
 @Data
 public class TaskForm {
 
+    private Long id;
     private String task;
     private Integer importance;
     private Date dayOfWeek;
-    private Time time;
+    private String time;
 }

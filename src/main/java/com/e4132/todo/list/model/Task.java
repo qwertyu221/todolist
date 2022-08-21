@@ -15,7 +15,7 @@ import java.sql.Time;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "table_todolist")
+@Table(name = "table_task")
 public class Task {
 
     @Id
@@ -29,7 +29,7 @@ public class Task {
     @Column(name = "day_of_week")
     private Date dayOfWeek;
     @Column(name = "time")
-    private Time time;
+    private String time;
 
 
 

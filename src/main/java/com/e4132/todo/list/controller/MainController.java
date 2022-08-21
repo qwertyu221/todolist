@@ -30,6 +30,20 @@ public class MainController {
         return "allTasks";
     }
 
+    @GetMapping("/todo/imp")
+    public String getToDoListByImportance(Model model){
+        List<Task> tasks = taskService.getAllTasksByImportance();
+        model.addAttribute("allTasks", tasks);
+        return "allTasks";
+    }
+
+    @GetMapping("/todo/date")
+    public String getToDoListByDate(Model model){
+        List<Task> tasks = taskService.getAllTasksByDay();
+        model.addAttribute("allTasks", tasks);
+        return "allTasks";
+    }
+
     @GetMapping("todo/addTask")
     public String addTask(Model model){
         Task task = new Task();
@@ -39,18 +53,26 @@ public class MainController {
 
     @PostMapping("/todo/saveTask")
     public String addTaskToList(TaskForm form){
-        Task task = new Task();
-        task.setTask(form.getTask());
-        task.setImportance(form.getImportance());
-        task.setDayOfWeek(form.getDayOfWeek());
-        task.setTime(form.getTime());
-        taskService.addTask(task);
+        taskService.addTask(form);
         return "redirect:/todo";
     }
 
     @PostMapping("/todo/{task-Id}/delete")
     public String deleteTask(@PathVariable("task-Id") Long id){
         taskService.deleteTask(id);
+        return "redirect:/todo";
+    }
+
+    @GetMapping("/todo/{task-Id}")
+    public String getUserPage(@PathVariable("task-Id") Long id, Model model){
+        Task task = taskService.getTask(id);
+        model.addAttribute("task",task);
+        return "changeTask";
+    }
+    @PostMapping("/todo/{task-Id}/update")
+    public String updateTask(@PathVariable("task-Id") Long id, TaskForm form){
+        form.setId(id);
+        taskService.addTask(form);
         return "redirect:/todo";
     }
 }
